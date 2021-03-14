@@ -9,7 +9,7 @@ html{
 overflow: visible;	
 }
 body{
-background:gray;	
+background:lightgray;	
  font-family: arial;	
  position: absolute;	
  overflow-y: scroll;	
@@ -18,13 +18,4 @@ background:gray;
 ::selection{
 background-color: #e91e63;	
 color: #fff;	
-}
-#footer{
-height: 51.5px;	
- line-height: 50px;	
- background: #fff;	
- color: #e91e63;	
- clear: both;	
- bottom: -10px;	
- width: 100% ;	
 }
