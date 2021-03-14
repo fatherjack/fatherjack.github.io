@@ -1,0 +1,161 @@
+a{
+color: #e91e63;	
+ text-decoration: none;	
+-webkit-tap-highlight-color: transparent;	
+-moz-tap-highlight-color: transparent;	
+-o-tap-highlight-color: transparent;	
+-ms-tap-highlight-color: transparent;	
+-khtml-tap-highlight-color: transparent;	
+}
+a:hover{
+color: #292727}
+
+html{
+overflow: visible;	
+}
+body{
+background:#292727;	
+ font-family: arial;	
+ position: absolute;	
+ overflow-y: scroll;	
+ overflow-x: hidden;	
+}
+::selection{
+background-color: #e91e63;	
+color: #fff;	
+}
+#footer{
+height: 51.5px;	
+ line-height: 50px;	
+ background: #fff;	
+ color: #e91e63;	
+ clear: both;	
+ bottom: -10px;	
+ width: 100% ;	
+}
+#judul{
+position: fixed!important;	
+ right: 1% ;	
+ color: white;	
+ font-size: 18px;	
+ font-family: monospace;	
+}
+#credit{
+position: fixed!important;	
+ top: 90% ;	
+ right: 0.5% ;	
+ color: white;	
+ font-size: 18px;	
+ font-family: monospace;	
+}
+#kanan{
+position: fixed!important;	
+ top: 95% ;	
+ right: 5% ;	
+ color: white;	
+}
+#wrCr{
+position: fixed!important;	
+ bottom: 0.25% ;	
+ left: 0.2% ;	
+ width: 190px;	
+ background-color: rgba(255, 255, 255, 0.31);	
+ border-radius: 5px;	
+ color: white;	
+ font-family: Arial, sans-serif;	
+ text-align: center;	
+ text-shadow: 0px 0px 2px #fff, -1px -1px 4px #e91e63;	
+}
+.pace-inactive{
+display: none;	
+}
+.pace .pace-progress{
+background: none repeat scroll 0% 0% #e91e63;	
+ position: fixed;	
+ z-index: 99999;	
+ top: 0px;	
+ left: 0px;	
+ height: 3px;	
+ border-radius: 5px;	
+ transition: width 1s ease 0s;	
+}
+.pace .pace-progress-inner{
+display: block;	
+ position: absolute;	
+ right: 0px;	
+ width: 100px;	
+ height: 100%;	
+ box-shadow: 0px 0px 10px #e91e63, 0px 0px 5px #FFF;	
+ opacity: 1;	
+ transform: rotate(3deg) translate(0px, -4px);	
+}
+.pace .pace-activity{
+display: block;	
+ position: fixed;	
+ z-index: 99999;	
+ top: 15px;	
+ right: 15px;	
+ width: 14px;	
+ height: 14px;	
+ border-width: 2px;	
+ border-style: solid;	
+ border-right: 2px solid transparent;	
+ border-color: #e91e63 transparent transparent #e91e63;	
+ -moz-border-top-colors: none;	
+ -moz-border-right-colors: none;	
+ -moz-border-bottom-colors: none;	
+ -moz-border-left-colors: none;	
+ border-image: none;	
+ border-radius: 10px;	
+ animation: 400ms linear 0s normal none infinite running pace-spinner;	
+}
+@-webkit-keyframes pace-spinner{
+0%{
+-webkit-transform: rotate(0deg);	
+ transform: rotate(0deg);	
+}
+100%{
+-webkit-transform: rotate(360deg);	
+ transform: rotate(360deg);	
+}
+}
+@-moz-keyframes pace-spinner{
+0%{
+-moz-transform: rotate(0deg);	
+ transform: rotate(0deg);	
+}
+100%{
+-moz-transform: rotate(360deg);	
+ transform: rotate(360deg);	
+}
+}
+@-o-keyframes pace-spinner{
+0%{
+-o-transform: rotate(0deg);	
+ transform: rotate(0deg);	
+}
+100%{
+-o-transform: rotate(360deg);	
+ transform: rotate(360deg);	
+}
+}
+@-ms-keyframes pace-spinner{
+0%{
+-ms-transform: rotate(0deg);	
+ transform: rotate(0deg);	
+}
+100%{
+-ms-transform: rotate(360deg);	
+ transform: rotate(360deg);	
+}
+}
+@keyframes pace-spinner{
+0%{
+transform: rotate(0deg);	
+ transform: rotate(0deg);	
+}
+100%{
+transform: rotate(360deg);	
+ transform: rotate(360deg);	
+}
+}
