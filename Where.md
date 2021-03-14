@@ -1,0 +1,90 @@
+# using WHERE method rather than Where-Object
+
+# first lets look at strings and delimiters and assignment of values
+
+# a list of pets
+$Pets = "cat,dog,parrot,budgie"
+# all as one string
+$Pets
+# we can split on a given character - note the character gets consumed in the splitting
+$pets -split ','
+
+# this output is an array so we can ask for specific elements
+($pets -split ',')[1]
+($pets -split ',')[0,3]
+($pets -split ',')[1..3]
+
+$Mammals = ($pets -split ',')[0..1]
+$Birds = ($pets -split ',')[2..3]
+$ContainA = ($pets -split ',')[0,2]
+
+$Mammals
+$Birds
+$ContainA
+
+# putting that to one side, letes take a look at .Where method
+1..1e2 | set-content C:\temp\file.txt -Force
+
+$data = get-content "c:\temp\file.txt"
+
+# filtering with the where-object
+$data | where {$_ % 5 -eq 0}
+# similar filter with the where method
+$data.Where({$_ % 5 -eq 0})
+
+# advantage ? speed - the .net method is ~50% faster when processing 1M rows
+
+# but what you dont often encounter are the extras ... What extras?!
+$data.Where
+# "Cannot find an overload for ".Where({ expression } [, mode [, numberToReturn]])" "
+# {expression}
+# [mode] - optional
+# [numbertoreturn] - optional
+
+# so we know {expression} - we have used that
+# we can assume that numbertoreturn is an integer
+# how do we find the mode values?
+$data|gm -MemberType Method
+
+# we have to explore the class
+[where]
+
+#default
+$MatchedValues = $data.where({$_ -lt 10})
+$MatchedValues
+
+# the .net methods dont provide output to the pipeline - this is a fundamental difference for .foreach, .where, etc
+
+# but they dont have to dispose of the objects that dont match the where filter
+$MatchedValues, $NotMatchedValues = $data.where({$_ -eq 10},'split')
+$MatchedValues
+$NotMatchedValues
+
+
+
+
+$data = (1..20 )
+$data.where({$_ -eq 10},'until')
+$result, $otherpart = $data.where({$_ -eq 10},'skipuntil')
+$result
+$otherpart
+
+
+
+$num = 0
+while( $data.count -gt 0){
+Write-Verbose "$($data.count) data rows"
+$num++
+$current, $data = $data.where({$_},"split", 10)
+Write-Verbose "$($data.count) data rows : $($count.count) count rows"
+$current | add-content "C:\temp\file$num.txt" -Force
+}
+
+
+
+$Services = (Get-Service)
+
+$Services = (Get-Service).where({$_.status -eq "Running"})
+
+
+$Services = (Get-Service).where({$_.status -eq "Running"},'split')
