@@ -1,21 +1,27 @@
 a{
-color: #e91e63;	
- text-decoration: none;	
+    color: #e91e63;	
+    text-decoration: none;	
 }
 a:hover{
-color: #292727}
-
+    color: #292727
+}
 html{
-overflow: visible;	
+    overflow: visible;	
 }
 body{
-background:lightgray;	
- font-family: arial;	
- position: absolute;	
- overflow-y: scroll;	
- overflow-x: hidden;	
+    background:lightgray;	
+    font-family: Verdana, Geneva, Tahoma, sans-serif;	
+    position: absolute;	
+    overflow-y: scroll;	
+    overflow-x: hidden;	
 }
 ::selection{
-background-color: #e91e63;	
-color: #fff;	
+    background-color: #e91e63;	
+    color: #fff;	
+}
+p.codetext{
+    color: #198f19;	
+    background-color: black;
+     margin-left: 100;
+    margin-right: auto;
 }
