@@ -5,9 +5,10 @@ title: occasional content from a database engineer with a desire to automate
 description: PowerShell, SQL Server, Oracle, Community
 tags: [about]
 image:
-  feature: soft-trees.jpg
+  feature: mug.jpg
 ---
 
+Jonathan Jonathan Jonathan 
 This is built on Semantic.gs grid framework which I edited a bit to make it fluid. I hope you enjoy using, forking, whatevering this theme as much as I did making it. 
 
 ### Features

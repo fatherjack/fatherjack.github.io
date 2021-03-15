@@ -1,7 +1,7 @@
 title:            Balzac
 tagline:          A beautiful theme.
-description:      Describe your website.
-canonical: http://jekyll.gtat.me
+description:      Data things
+canonical: 
 
 # Owner/author information
 owner:
@@ -23,7 +23,7 @@ tools:
 
 # Open Graph customization
 opengraph:
-  locale:           en_US
+  locale:           en_UK
 
 # Links to include in top navigation
 # For external links add external: true
@@ -31,14 +31,14 @@ links:
   - title: About
     url: /about
   - title: Github
-    url: https://github.com/ColeTownsend/Balzac-for-Jekyll
+    url: https://github.com/fatherjack
     external: true
-  - title: Cole Who?
-    url: http://coletownsend.com
-    external: true
+  #- title: Cole Who?
+  #  url: http://coletownsend.com
+  #  external: true
 
 # http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
-timezone:    America/New_York
+timezone:    GMT
 future:      true
 highlighter: pygments
 markdown:    kramdown
