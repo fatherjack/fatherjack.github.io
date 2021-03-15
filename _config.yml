@@ -5,16 +5,16 @@ canonical: http://jekyll.gtat.me
 
 # Owner/author information
 owner:
-  name:           Cole Townsend
-  avatar:         avatar.png
-  bio:            "Aesthete & Athlete"
-  email:          cole@coletownsend.com
-  twitter:        twnsndco
-  github:         coletownsend
-  instagram:      ctrunsthis
-  dribbble:       coletownsend
-  disqus:         balzac
-  location:       "Buffalo, NY"
+  name:           Fatherjack
+  avatar:         mug.jpg
+  bio:            
+  email:          
+  twitter:        fatherjack
+  github:         fatherjack
+  instagram:      
+  dribbble:       
+  disqus:         
+  location:       "Cornwall and Southampton"
   # Plug in your disqus shortname!
 
 tools:
