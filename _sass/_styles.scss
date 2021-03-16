@@ -102,6 +102,7 @@ code {
         .s {
             color: #87ceeb;
         }
+        overflow-x: scroll;
     }
 }
 
@@ -729,9 +730,7 @@ footer {
     
     .prev-posts {
         li  {
-          
-          .recent-title {
-              
+          .recent-title { 
           }
           
           span.date {
