@@ -80,6 +80,9 @@ code {
     border-radius: 4px;
     margin-bottom: $lh;
     // overflow-x: hidden;
+    .inner::-webkit-scrollbar {
+  display: none;
+}
 
     code {
         color: $white;
