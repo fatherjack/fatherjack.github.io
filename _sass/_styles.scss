@@ -162,7 +162,7 @@ input {
     float: none;
     margin: 0 auto;
     @include clearfix;
-    overflow: hidden;
+    overflow: auto;
 }
 
 .post {
@@ -614,7 +614,7 @@ header.site-header nav {
 footer {
     width: 100%;
     background: $black;
-    height: $footerHeight;
+    height: $footerHeight/4;
     font-size: $fsp;
     color: $white;
     position: relative;
