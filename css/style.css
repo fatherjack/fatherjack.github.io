@@ -6,7 +6,7 @@ a:hover{
     color: #292727
 }
 html{
-    overflow: visible;	
+    overflow: hidden;	
 }
 body{
     background:lightgray;	
@@ -22,6 +22,6 @@ body{
 p.codetext{
     color: #198f19;	
     background-color: black;
-     margin-left: 100;
+    margin-left: 100;
     margin-right: auto;
 }
