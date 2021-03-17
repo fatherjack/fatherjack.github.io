@@ -673,7 +673,7 @@ footer {
             span.date {
                 float: none;
                 color: transparentize($grey-light, .4);
-                @include column(4,12);
+                @include column(4,10);
                 position: relative;
                 font-size: $fs5;
                 font-family: $sans;
@@ -686,7 +686,7 @@ footer {
     .social {
         position: absolute;
         top: 109px;
-        @include column(2,5);
+        @include column(2,10);
         right: 5vw;
         font-style: italic;
         a {
