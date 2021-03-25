@@ -1,24 +1,25 @@
 ---
 layout: post
 title: "Export to Excel script snippet"
-description: "Using a VSCode snippet to improve writing Export-Excel funcitons"
+description: "Using a VSCode snippet to improve writing Export-Excel functions"
 category: articles
 tags: [ImportExcel, ExportExcel, VSCode, Snippets]
 ---
 
-If you use the ImportExcel PowerShell module (and you really should be if you are handling data in your scripts and sharing it out with colleagues via files ) then you will probably be writing code that takes an object variable which is the results of your script and passing it to the Export-Excel function.
+If you use the ImportExcel PowerShell module (and you really should be if you are handling data in your scripts and sharing it out with colleagues via files) then you will probably be writing code that takes an object variable which is the results of your script and passing it to the Export-Excel function.
 
 Some key parameters for the function are the path for the output file and a table style for that data. I found myself using this so much as a splatting variable that I created this VSCode snippet to ease the process.
 
-Open VSCode and press F1.
+Open VSCode, press F1 and start typing 'User snipp'.
 
 ![image](https://user-images.githubusercontent.com/2597535/112467179-a3d4b300-8d5e-11eb-956f-bd2e8cfdf96b.png)
 
-Choose PowerShell snippets.
+Click the User Snippets menu item and then choose PowerShell.json from that menu.
 
 ![image](https://user-images.githubusercontent.com/2597535/112467247-ba7b0a00-8d5e-11eb-8ab0-d2d5f5cac197.png)
 
 Add the snippet code section below into that JSON file
+
 ````powershell
 "ExportExcel":{
 	"prefix": "_ExportExcelSplat",
