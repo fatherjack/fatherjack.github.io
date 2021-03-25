@@ -28,4 +28,7 @@ Add the snippet code section below into that JSON file
 Save the file and then open a new file in the code editor, then type ````_exp```` and you will see this tool tip
 ![image](https://user-images.githubusercontent.com/2597535/112467692-45f49b00-8d5f-11eb-8bd3-af1b01b4367c.png)
 
-Press [Tab] and the snippet of code will be pasted in and your cursor position will be ready to complete the Worksheetname value. Once you have done that press [Tab] again and you can complete the TableName value. Once you have completed that press [Tab] again and you can provide the path value for the file you want created. One file press of the [Tab] button will take you to the line after the pasted snippet for you to continue your script.
+Press [Tab] and the snippet of code will be pasted in and your cursor position will be ready to complete the Worksheetname value. Once you have done that press [Tab] again and you can complete the TableName value. Once you have completed that press [Tab] again and you can provide the path value for the file you want created. One final press of the [Tab] button will take you to the line after the pasted snippet for you to continue your script.
+![image](https://user-images.githubusercontent.com/2597535/112470212-50fcfa80-8d62-11eb-9259-133a353eecdf.png)
+
+Hope this helps!
