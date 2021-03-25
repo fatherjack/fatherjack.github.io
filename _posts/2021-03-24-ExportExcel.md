@@ -16,7 +16,7 @@ Add the snippet code section below into that JSON file
 	"prefix": "_ExportExcelSplat",
 	"body": [
 		"\\$splatExcel = @{",
-		"    path       = ${Outfile}",
+		"    path       = \"${Outfile}\"",
 		"    tablestyle = \"medium15\"",
 		"    autosize   = \\$true",
 		"}",
