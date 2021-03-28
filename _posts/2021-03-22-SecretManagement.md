@@ -24,7 +24,47 @@ Open KeePass and click New. This gives you a couple of configuration screens and
 
 As you can see, by default we get a couple of sample secrets. Normally you might delete those but Those will come in handy in a moment!
 
-Check you have the SecretManagement module and the KeePass modules installed with ```Get-Module secret*``` and you should see
+Check you have the SecretManagement module and the KeePass modules installed with ```Get-Module secret*``` and you should see these modules
 
-![image](https://user-images.githubusercontent.com/2597535/112754285-4b5a1b80-8fd3-11eb-9864-90eb4edf70da.png)
+![Three modules needed for this process re shown](https://user-images.githubusercontent.com/2597535/112754285-4b5a1b80-8fd3-11eb-9864-90eb4edf70da.png)
+
+```powershell
+# Set path to KeePass file and test it exists
+$KeePassDB = "C:\Temp\SecretManagement\DemoDatabase.kdbx"
+
+# set up the value for the VaultParameters parameter
+$VParams = @{ Path    = $KeePassDB 
+    UseMasterPassword = $true
+    MasterPassword    = 'pwd' 
+}
+# Set a vault name and if it exists then unregister that vault in this session
+$VaultName = 'KPVault01'
+if (Get-SecretVault -Name $VaultName) { Unregister-SecretVault $VaultName }
+# register our chosen vault
+Register-SecretVault -Name $VaultName -ModuleName SecretManagement.keepass  -VaultParameters $VParams
+```
+
+What does this code segment do? Firstly we set the path of our KeePass file into a variable and then create a hash table variable to pass to the ```RegisterSecretVault``` __VaultParameters__ parameter. The ```Register-SecretVault``` command will only be successful if there is no vault already registered with the name we are using so we set the name and check the results of ```Get-SecretVault```. If this finds a vault then we are unregistering it ahead of us registering our chosen vault for this session. 
+
+If this runs without error then we can run ```Test-SecretVault -Name KPVault01``` and if everything is OK we get True as the result.
+![Script runs with success](https://user-images.githubusercontent.com/2597535/112759176-c4fd0400-8fe9-11eb-938e-6da3d1beb494.png)
+
+### Getting secrets from a KeePass file
+
+This is pretty simple to achieve, you just need to provide the vault name and the secret name that you are interested in
+```powershell
+$sec = Get-Secret -Vault KPVault01 -Name "Sample Entry" -AsPlainText
+
+$sec | Get-Member -membertype property
+```
+![Details of the secret](https://user-images.githubusercontent.com/2597535/112759569-7fd9d180-8feb-11eb-9cb2-1cdf5b5da965.png)
+
+```powershell
+$sec.GetNetworkCredential().password
+```
+![The password](https://user-images.githubusercontent.com/2597535/112759843-b95f0c80-8fec-11eb-91d6-9fe14d958550.png)
+
+
+
+### Adding a new secret to the KeePass file
 
