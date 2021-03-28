@@ -62,9 +62,30 @@ $sec | Get-Member -membertype property
 ```powershell
 $sec.GetNetworkCredential().password
 ```
-![The password](https://user-images.githubusercontent.com/2597535/112759843-b95f0c80-8fec-11eb-91d6-9fe14d958550.png)
+![The password in PowerShell](https://user-images.githubusercontent.com/2597535/112759843-b95f0c80-8fec-11eb-91d6-9fe14d958550.png)
 
+![The password in KeePass](https://user-images.githubusercontent.com/2597535/112760323-671eeb00-8fee-11eb-9a60-7809914ef3fc.png)
 
+We can see that our PowerShell session has retreiveed the (ridiculously simple) password correctly.
 
 ### Adding a new secret to the KeePass file
 
+Again, a very simple, logical command to set a new secret. We supply the vault that we want to store it in, the name of the secret and the secret itself.
+```powershell
+Set-Secret -Name 'Fatherjack' -Vault $VaultName -Secret 'ASECRET' 
+```
+
+Checking this in KeePass involves closing the file and reopening it (unless someone can find a 'Refresh' function in KeePass that I haven't). Note that the secret has both a **name** and a **Username** property and that we have only provided the secret name. 
+![image](https://user-images.githubusercontent.com/2597535/112760588-6f2b5a80-8fef-11eb-8375-e98c5c6e71e7.png)
+
+### Points to consider before you take this onto important computers
+
+As you can see above, the KeePass database file password needs to be passed into the ```Register-SecretVault``` command so it should **NOT** be included in files as saved content. This is perhaps something that should be provided at script execution time via the ```Get-Credential``` command.
+
+```powershell
+Set-Secret -Name Important -Vault $VaultName -Secret (Get-Credential -UserName ImportantUser -Message "Please enter the password for ImportantUser")
+```
+
+![Checking more KeePass details](https://user-images.githubusercontent.com/2597535/112761032-1f4d9300-8ff1-11eb-8716-e3eb499f378c.png)
+
+There we go, it's time to explore the SecretManagement module from Microsoft and the module from your preferred secret management provider.
