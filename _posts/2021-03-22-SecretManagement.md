@@ -10,7 +10,7 @@ If you have secrets in a variety of secret management apps then Microsoft have a
 
 ### What is the SecretManagement module?
 
-There is a considerable amount of information about the SecretManagement module from Microsoft here (...) and getting that installed and working isnt the intended purpose of this blog. If you are up and working with the module already then read on. If you are new to the module then check out the resources listed and you should be fine. If not, message me and we can work on a new post here to fill that gap.
+There is a considerable amount of information about the SecretManagement module [from Microsoft here](https://devblogs.microsoft.com/powershell/secretmanagement-and-secretstore-are-generally-available/) and getting that installed and working isnt the intended purpose of this blog. If you are up and working with the module already then read on. If you are new to the module then check out the resources listed and you should be fine. If not, message me and we can work on a new post here to fill that gap. In short, you need to import the modules with ```Import-Module Microsoft.PowerShell.SecretManagement, Microsoft.PowerShell.SecretStore```, and then get the KeePass module with ```Import-module SecretManagement.KeePass
 
 ### Where do we start?
 
@@ -24,4 +24,7 @@ Open KeePass and click New. This gives you a couple of configuration screens and
 
 As you can see, by default we get a couple of sample secrets. Normally you might delete those but Those will come in handy in a moment!
 
-Check you have the SecretManagement module installed with ```Get-Module``` and you should see
+Check you have the SecretManagement module and the KeePass modules installed with ```Get-Module secret*``` and you should see
+
+![image](https://user-images.githubusercontent.com/2597535/112754285-4b5a1b80-8fd3-11eb-9864-90eb4edf70da.png)
+
