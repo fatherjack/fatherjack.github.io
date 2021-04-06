@@ -7,7 +7,7 @@ An enumerator is a data type that has preset values (constants). When we set a v
 
 ## How do we create an Enum then?
 
-we define an enum a bit like a hash table of values we want to work with
+we define an enum a bit like a hash table of values we want to work with, except there is no Name part, its just a set of values.
 
 ````powershell
 PS> enum Animals {
@@ -60,22 +60,52 @@ $Var2.gettype().fullname
 
 ![image](https://user-images.githubusercontent.com/2597535/113762717-cbd5f600-9710-11eb-9d23-e3eb676c807a.png)
 
+How do these two variables compare?
 
-($var1 -eq $var2)
+```powershell
+PS> ($var1 -eq $var2)
+```
 
-$var2.tostring()
+![image](https://user-images.githubusercontent.com/2597535/113769368-d4322f00-9718-11eb-81db-dbb02d451d6c.png)
 
-$var2 += [Animals]::tiger
+We can very simply convert our Animals type variable into a string with its built-in ToString() method
 
-$var2 -eq 'fish'
-$var2 -eq 'tiger'
+```powershell
+PS> $var2.tostring()
+```
 
-$var2 -like 'tiger'
+Strange things happen when we add a second value to our [Animals] type variable though
 
-$var2 -eq 'fish, tiger'
-$var2
+```powershell
+PS> $var2 += [Animals]::tiger
+PS> $var2
+```
 
+![image](https://user-images.githubusercontent.com/2597535/113770982-bd8cd780-971a-11eb-9985-ad06c4bed7f1.png)
 
+The value of our variable has become the sum of the enum object values (Fish is 2 and Tige is 3 in our original declaration of the enum. However, we cant get those values back out very simply. These lines simply return ```False```.
+
+```powershell
+PS> $var2 -eq 'fish'
+PS> $var2 -eq 'tiger'
+```
+![image](https://user-images.githubusercontent.com/2597535/113771465-4dcb1c80-971b-11eb-8566-60fc3b46ae1c.png)
+
+Trying other comparisons is similarly doomed
+
+```powershell
+PS> $var2 -like 'tiger'
+PS> $var2 -eq 'fish, tiger'
+PS> $var2
+```
+
+![image](https://user-images.githubusercontent.com/2597535/113771718-a6021e80-971b-11eb-9080-ffa872b97234.png)
+
+The value, 5, is also useless to us as both 2+3 and 1+4 could be combinations of values that make up our current value of 5
+
+If we want to work with more than one value in an enum then we need to declare it with the ```[Flags()]``` designation. Looking at the different attributes that a file can have, we could define an enum as follows
+
+```powershell
 [Flags()] enum FileAttributes {
     Archive = 1
     Compressed = 2
@@ -84,14 +114,29 @@ $var2
     Encrypted = 16
     Hidden = 32
 }
+```
+Once that is done we could define ```$file1``` as 
 
+```powershell
 [FileAttributes]$file1 = [FileAttributes]::Archive
 [FileAttributes]$file1 +=[FileAttributes]::Compressed
 [FileAttributes]$file1 +=  [FileAttributes]::Device
-"file1 attributes are: $file1"
+```
+Having done this, we can see the attributes of our imaginary file with this line
 
-[FileAttributes]$file2 = [FileAttributes]28 ## => 16 + 8 + 4
+```powershell
+"file1 attributes are: $file1"
+```
+
+![image](https://user-images.githubusercontent.com/2597535/113772356-83bcd080-971c-11eb-94d9-47c6deb76acd.png)
+
+Equally, we can use the sum of our selected attribute values to set our variable. Encrypted, Directory, and Device are 16 + 8 + 4 respectively, referencing our declaration above. This totals 28 so we can set our $file2 variable as follows
+
+```powershell
+[FileAttributes]$file2 = [FileAttributes]28  
 "file2 attributes are: $file2"
+```
+![image](https://user-images.githubusercontent.com/2597535/113772691-ee6e0c00-971c-11eb-8576-4cfae890e255.png)
 
 ####################### Classes ##################################
 
