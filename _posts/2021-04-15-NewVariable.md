@@ -53,7 +53,7 @@ New-Variable -Name Phi -Value 1.61803 -Description "Positive root of {x^{2}-x-1=
 
 There is no way to change this variable value, you have to declare a new variable and use that or restart your PowerShell session and declare this variable with the desired value.
 
-Not even the next command in the group ```Remove-Varialble``` will affect a variable that has been declared as a constant.
+Not even the next command in the group ```Remove-Variable``` will affect a variable that has been declared as a constant.
 ![image](https://user-images.githubusercontent.com/2597535/114365501-6c457380-9b72-11eb-8f79-f85b049e15fb.png)
 
 The final command in this group is ```Clear-Variable```, this is going to remove any value from the variable that it is used against, in the same way that you can set a variable to null with ```$Variable = $null```. 
