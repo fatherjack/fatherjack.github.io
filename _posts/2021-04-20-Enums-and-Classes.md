@@ -144,27 +144,36 @@ Equally, we can use the sum of our selected attribute values to set our variable
 ## So what's a class? 
 
 We can consider a PowerShell class to be a blueprint of an object that defines what type of thing it is and how it will behave. For this functionality you will need to be working on PowerShell version 5. We can define our class with syntax layout that is quite similar to the way a function is declared.
-`powershell
+```powershell
 PS> Class Television {
     [string]$Manufacturer
     [string]$Model
     [int]$Screensize_CM
     [int]$Channel
 }
-'
+```
 With that done, when we are ready in our code we can then declare a variable to have a datatype of our class rather than one of the more common datatypes such as INT or STRING etc and when we inspect that variable we can see the properties that we wanted for our object
 
-`powershell
-$TV = [Television]::new()
+```powershell
+PS> $TV = [Television]::new()
 
 $TV
-`
+```
+![image](https://user-images.githubusercontent.com/2597535/114382822-bdf6f980-9b84-11eb-80e7-3cdef55d22b5.png)
 
-$TV.Manufacturer = 'Sony'
+Setting values for these properties is very simple, we 'dot reference' the property of our variables and assign the value we need
+
+```powershell
+PS> $TV.Manufacturer = 'Sony'
 $tv.Model = "TV123"
+```
 
+![image](https://user-images.githubusercontent.com/2597535/114383114-162dfb80-9b85-11eb-859b-7e5f24391fe5.png)
 
-Class Television2 {
+With this example Television class some properties are static, the size and manufacturer are not going to change over time but things like the Channel property will change as the object is being used. If we want to represent this in our code then we can declare a method within our class defintion so that we can instruct the object to increment or decrement the channel property as if we were pressing the channel up / down button on the remote control. We can also add a method that will give a string output which describe the object at that point in time - the ToString method that we see on other objects. Let's do this with a new class - Television2.
+
+````powershell
+PS> Class Television2 {
     [string]$Manufacturer
     [string]$Model
     [int]$Screensize_CM
@@ -187,7 +196,7 @@ Class Television2 {
         return ("The {0} {1} has a screen size of {2}cm" -f $this.Manufacturer, $this.Model, $this.Screensize_CM)
     }
 }
-
+```
 # define a new object of this new type of TV
 $TV = [television2]::new()
 # set some basic property values
