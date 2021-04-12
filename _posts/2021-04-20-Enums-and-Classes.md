@@ -140,23 +140,25 @@ Equally, we can use the sum of our selected attribute values to set our variable
 
 ####################### Classes ##################################
 
-# PowerShell Classes
 
-#requires -version 5
+## So what's a class? 
 
-<#
- "a blueprint of an object used to defines a type of object"
-#>
-Class Television {
+We can consider a PowerShell class to be a blueprint of an object that defines what type of thing it is and how it will behave. For this functionality you will need to be working on PowerShell version 5. We can define our class with syntax layout that is quite similar to the way a function is declared.
+`powershell
+PS> Class Television {
     [string]$Manufacturer
     [string]$Model
     [int]$Screensize_CM
     [int]$Channel
 }
+'
+With that done, when we are ready in our code we can then declare a variable to have a datatype of our class rather than one of the more common datatypes such as INT or STRING etc and when we inspect that variable we can see the properties that we wanted for our object
 
+`powershell
 $TV = [Television]::new()
 
 $TV
+`
 
 $TV.Manufacturer = 'Sony'
 $tv.Model = "TV123"
