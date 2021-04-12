@@ -175,7 +175,7 @@ $tv.Model = "TV123"
 
 With this example Television class some properties are static, the size and manufacturer are not going to change over time but to make things a bit more realisticit would be good if properties like the Channel value can be set and changed at will. If we want to represent this in our code then we can declare a method to do what we need. Within our class defintion we can provide logic for setting the channel property and also to instruct the object to increment or decrement the channel property as if we were pressing the channel up / down button on the remote control. In terms of retrieving property values We can also add a method that will give a string output which describe the object at that point in time - the ToString method that we see on other objects. Let's do this with a new class - Television2.
 
-````powershell
+```powershell
 PS> Class Television2 {
     [string]$Manufacturer
     [string]$Model
@@ -217,11 +217,11 @@ $tv.SetChannel(4)
 $tv
 ```
 
-{{image here }}
+![image](https://user-images.githubusercontent.com/2597535/114449043-39c86480-9bcc-11eb-9166-b9ae850ea044.png)
 
-So we can see that our object has the values set by direct assignment (eg ```$TV.Manufacturer = 'Samsung'```) but also using the method *SetChannel* that we created ```$tv.SetChannel(4)```.
+So we can see that our object has the values set by direct assignment (eg ```$TV.Manufacturer = 'Samsung'```) but also using the object method *SetChannel* that we created with the line ```$tv.SetChannel(4)```.
 
-Now we will test the *ChannelUp* and *ChannelDown* methods.
+Now we will test the **ChannelUp** and **ChannelDown** methods.
 
 ```powershell
 # test out the new methods
@@ -233,6 +233,11 @@ $tv.ChannelDown
 
 # calling the ToString method gets all of the object properties in the string format that we specified 
 $tv.ToString()
+```
+
+The ChannelUp and ChannelDown methods were written to do two things - the first (*$this.Channel ++*) is to change the channel up or down by one and then the second (*return ($this.Channel)*) is to return the new channel value.
+![image](https://user-images.githubusercontent.com/2597535/114449348-8c098580-9bcc-11eb-9a02-de216ff77c75.png)
+
 
 ################
 # something for the reader to do: add a Volume property and methods to control the TV volume selection
