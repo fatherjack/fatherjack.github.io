@@ -30,10 +30,30 @@ If we use the next logical command in the group ```Get-Variable``` by default we
 
 ![image](https://user-images.githubusercontent.com/2597535/114321067-cb729c00-9b10-11eb-8921-f07016f033ba.png)
 
-In order to investigate the ```options``` parameter we will create a new variable.
+In order to investigate the ```-options``` parameter we will create a new variable.
 ```powershell
 New-Variable -Name Pi -Description "A constant value" -Value 3.141 -Option Readonly
 ```
 
-Here we have created a new variable called ```$Pi``` and set it to a very short version of its value [![image](https://user-images.githubusercontent.com/2597535/114321556-463cb680-9b13-11eb-89ff-d2272f2cdb70.png)](https://en.wikipedia.org/wiki/Pi) but also declared the variable as ReadOnly
-  
+Here we have created a new variable called ```$Pi``` and set it to a very short version of its value [![image](https://user-images.githubusercontent.com/2597535/114321556-463cb680-9b13-11eb-89ff-d2272f2cdb70.png)](https://en.wikipedia.org/wiki/Pi) 
+but we also used the -option parameter and declared the variable as ReadOnly. This means that we get an error if we try to set ```$Pi``` to a different value.
+![image](https://user-images.githubusercontent.com/2597535/114361986-baf10e80-9b6e-11eb-84b7-1ac3e33cc1be.png)
+
+This could be really handy when you want to make sure no code edits misuse your variable for something else because they didnt fully appreciate how important it was. It *is* possible to change the value of a ReadOnly variable though, you just need to use ```Set-Variable``` and ```-Force```.
+
+![image](https://user-images.githubusercontent.com/2597535/114362376-2935d100-9b6f-11eb-99d0-415fbc92381f.png)
+
+So, this means that the variable is only going to be changed by someone who really needs to change it and that hopefully means that they also understand why they want to and that it wont affect your intentions elsewhere in the code.
+
+It is possible however to stop even this sort of method making a change to a variable value.
+```powershell
+New-Variable -Name Phi -Value 1.61803 -Description "Positive root of {x^{2}-x-1=0} ref https://en.wikipedia.org/wiki/List_of_mathematical_constants" -Option Constant
+```
+![image](https://user-images.githubusercontent.com/2597535/114365143-1375db00-9b72-11eb-90cc-e785418cfb81.png)
+
+There is no way to change this variable value, you have to declare a new variable and use that or restart your PowerShell session and declare this variable with the desired value.
+
+Not even the next command in the group ```Remove-Varialble``` will affect a variable that has been declared as a constant.
+![image](https://user-images.githubusercontent.com/2597535/114365501-6c457380-9b72-11eb-8f79-f85b049e15fb.png)
+
+The final command in this group is ```Clear-Variable```, this is going to remove any value from the variable that it is used against, in the same way that you can set a variable to null with ```$Variable = $null```. 
