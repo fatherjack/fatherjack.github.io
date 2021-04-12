@@ -144,6 +144,7 @@ Equally, we can use the sum of our selected attribute values to set our variable
 ## So what's a class? 
 
 We can consider a PowerShell class to be a blueprint of an object that defines what type of thing it is and how it will behave. For this functionality you will need to be working on PowerShell version 5. We can define our class with syntax layout that is quite similar to the way a function is declared.
+
 ```powershell
 PS> Class Television {
     [string]$Manufacturer
@@ -152,6 +153,7 @@ PS> Class Television {
     [int]$Channel
 }
 ```
+
 With that done, when we are ready in our code we can then declare a variable to have a datatype of our class rather than one of the more common datatypes such as INT or STRING etc and when we inspect that variable we can see the properties that we wanted for our object
 
 ```powershell
@@ -159,6 +161,7 @@ PS> $TV = [Television]::new()
 
 $TV
 ```
+
 ![image](https://user-images.githubusercontent.com/2597535/114382822-bdf6f980-9b84-11eb-80e7-3cdef55d22b5.png)
 
 Setting values for these properties is very simple, we 'dot reference' the property of our variables and assign the value we need
@@ -170,7 +173,7 @@ $tv.Model = "TV123"
 
 ![image](https://user-images.githubusercontent.com/2597535/114383114-162dfb80-9b85-11eb-859b-7e5f24391fe5.png)
 
-With this example Television class some properties are static, the size and manufacturer are not going to change over time but things like the Channel property will change as the object is being used. If we want to represent this in our code then we can declare a method within our class defintion so that we can instruct the object to increment or decrement the channel property as if we were pressing the channel up / down button on the remote control. We can also add a method that will give a string output which describe the object at that point in time - the ToString method that we see on other objects. Let's do this with a new class - Television2.
+With this example Television class some properties are static, the size and manufacturer are not going to change over time but to make things a bit more realisticit would be good if properties like the Channel value can be set and changed at will. If we want to represent this in our code then we can declare a method to do what we need. Within our class defintion we can provide logic for setting the channel property and also to instruct the object to increment or decrement the channel property as if we were pressing the channel up / down button on the remote control. In terms of retrieving property values We can also add a method that will give a string output which describe the object at that point in time - the ToString method that we see on other objects. Let's do this with a new class - Television2.
 
 ````powershell
 PS> Class Television2 {
@@ -182,6 +185,7 @@ PS> Class Television2 {
     [void]SetChannel([int]$chan) {
         $this.Channel = $chan
     }
+
     [int]ChannelUp() {
         $this.Channel ++
         return ($this.Channel)
@@ -196,9 +200,10 @@ PS> Class Television2 {
         return ("The {0} {1} has a screen size of {2}cm" -f $this.Manufacturer, $this.Model, $this.Screensize_CM)
     }
 }
-```
+
 # define a new object of this new type of TV
 $TV = [television2]::new()
+
 # set some basic property values
 $TV.Manufacturer = 'Samsung'
 $tv.Model = "s46"
@@ -210,7 +215,15 @@ $tv.SetChannel(4)
 
 # check out the object
 $tv
+```
 
+{{image here }}
+
+So we can see that our object has the values set by direct assignment (eg ```$TV.Manufacturer = 'Samsung'```) but also using the method *SetChannel* that we created ```$tv.SetChannel(4)```.
+
+Now we will test the *ChannelUp* and *ChannelDown* methods.
+
+```powershell
 # test out the new methods
 $tv.ChannelUp()
 $tv.ChannelDown()
