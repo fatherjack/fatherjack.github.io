@@ -374,23 +374,26 @@ $tv; $tv.ToString()
 
 ## Does this help us tell what features a TV has?
 
-Great question - yes it does! We need ro start using lesser known comparison operators ```-band``` and ```-bnot``` to do this. We will take a look at ```-band``` first this does a binary comparison on two objects and returns true if the comparison is equivalent. As help says 
+Great question - yes it does! We need to start using lesser known bitwise comparison operators ```-band``` and ```-bnot``` to do this. We will take a look at ```-band``` first this does a bitwise comparison on two objects and returns true if the comparison is equivalent. As help says 
 
-> "In a bitwise AND operation, the resulting bit is set to 1 only when both input bits are 1.""
+> "In a bitwise AND operation, the resulting bit is set to 1 only when both input bits are 1."
 
-# by using Bitwise operators
+```powershell
 # using -band to find features
-# "In a bitwise AND operation, the resulting bit is set to 1 only when both input bits are 1.""
 $tv.Features -band [tvfeature]::HDMIInput
 
 $tv.Features -band [tvfeature]::SmartTV
+```
+![image](https://user-images.githubusercontent.com/2597535/115144868-e3817880-a046-11eb-9259-b17290ee3760.png)
 
-$tv.Features -bnot [TVFeature]::USB
-
+```powershell
 if ($tv.Features -band [tvfeature]::SmartTV) {
     "This TV has SmartTV feature"
 }
+```
+![image](https://user-images.githubusercontent.com/2597535/115144883-f3995800-a046-11eb-8b73-ecc6bba6d2a6.png)
 
+```powershell
 switch ($tv.Features) {
     { $_ -band [TVFeature]::HDMIInput } { "We have HDMIInput feature" }
     { $_ -band [tvfeature]::SmartTV } { "We have SmartTV feature" }
@@ -399,7 +402,12 @@ switch ($tv.Features) {
     { $_ -band [tvfeature]::WallMount } { "We have WallMount feature" }
     { $_ -band [tvfeature]::UHD } { "We have UHD feature" }
 }
+```
+Making use of the switch operators feature of evaluating all comparisons regardless of making a match in any we can get this output
+![image](https://user-images.githubusercontent.com/2597535/115144938-2e02f500-a047-11eb-82c9-9592f410877c.png)
 
+With some crafty bitwise comparisons we can use our script to check which TVs hve what features and are therefore ones to consider buying
+```powershell
 # want to buy a TV with 'this' or 'that' feature?
 # is we want a TV that has UHD and TVGuide or SmartTV
 if (($tv.Features -band [tvfeature]::UHD) -band (($tv.Features -band [tvfeature]::TVGuide) -bor ($tv.Features -band [tvfeature]::SmartTV))) {
@@ -408,7 +416,11 @@ if (($tv.Features -band [tvfeature]::UHD) -band (($tv.Features -band [tvfeature]
 else {
     Write-Output ("Sadly the {0} TV doesnt have the features you want" -f ($tv.Manufacturer))
 }
+```
+![image](https://user-images.githubusercontent.com/2597535/115145003-791d0800-a047-11eb-9b9b-5cc5c4084be9.png)
 
+With all the features in one property it is very simple to add a lot of them in one update to the object
+```powershell
 # want to add multiple features at once?
 # Lets get a new TV
 
@@ -420,8 +432,14 @@ $TV.Model = "HAL100"
 
 # what do we get if we add enums together?
 [int]([TVFeature]::SmartTV + [TVFeature]::UHD)
-
+```
+![image](https://user-images.githubusercontent.com/2597535/115145061-b5e8ff00-a047-11eb-98c0-bbc88b0047f0.png)
+```powershell
 #can we set the TV Features like that?
-$tv.Features = [int]([TVFeature]::SmartTV + [TVFeature]::UHD)
+$tv.Features = 34
 
 $TV.Features
+```
+![image](https://user-images.githubusercontent.com/2597535/115145086-d3b66400-a047-11eb-90cf-0722764fa6c1.png)
+
+So there we have it, Enums, Classes and Bitwise operators. I hope you found something in this thats useful to you.
