@@ -1,7 +1,17 @@
-## So what's a class? 
+---
+layout: post
+title: "Classes"
+description: "Controlling variable values"
+category: articles
+tags: [enums, classes, variables, powershell]
+---
 
-<sub>This is the second of three posts that will build on each other
-Part 1 - https://fatherjack.github.io/articles/Enums</sub>
+## About Classes
+
+This is the second of three posts in a mini-series. Part one was published last week and the final part will be out next week. 
+Part 1 - [Enums](https://fatherjack.github.io/articles/Enums)
+
+## So what's a class? 
 
 We can consider a PowerShell class to be a blueprint of an object that defines what type of thing it is and how it will behave. For this functionality you will need to be working on PowerShell version 5. We can define our class with syntax layout that is quite similar to the way a function is declared.
 
