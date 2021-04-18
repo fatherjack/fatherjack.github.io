@@ -229,8 +229,6 @@ $tv.ChannelUp()
 $tv.ChannelDown()
 # because both methods return an INT we see the new Channel setting
 
-$tv.ChannelDown
-
 # calling the ToString method gets all of the object properties in the string format that we specified 
 $tv.ToString()
 ```
@@ -239,11 +237,15 @@ The ChannelUp and ChannelDown methods were written to do two things - the first 
 ![image](https://user-images.githubusercontent.com/2597535/114449348-8c098580-9bcc-11eb-9a02-de216ff77c75.png)
 
 
-################
-# something for the reader to do: add a Volume property and methods to control the TV volume selection
-################
 
-# Classes can have properties that are themselves classes, or Enums
+``` # something for the reader to do: add a Volume property and methods to control the TV volume selection```
+
+
+## Classes can have properties that are themselves classes, or Enums
+
+If we create an enum called TVChannel that represents some of the TV channels here in the UK,  we can then use that in a class definition as the data type for the TVChannel property of our planned objects.
+
+```powershell
 enum TVChannel{
     BBC1 = 1
     BBC2 = 2
@@ -251,8 +253,6 @@ enum TVChannel{
     Channel4 = 4
     Channel5 = 5
 }
-
-[system.enum]::GetNames([TVChannel])
 
 Class Television3 {
     [string]$Manufacturer
@@ -266,45 +266,43 @@ Class Television3 {
     [int]ChannelUp() {
         $this.Channel ++
         return ($this.Channel)
-    }
-    
+    }    
     [int]ChannelDown() {
         $this.Channel --
         return ($this.Channel)
     }
 
     [string]ToString() {
-        return ("The {0} {1} has a screen size of {2}cm" -f $this.Manufacturer, $this.Model, $this.Screensize_CM)
+        return ("The {0} {1} has a screen size of {2}cm. It's currently set to show channel {3}" -f $this.Manufacturer, $this.Model, $this.Screensize_CM, $this.Channel)
     }
 }
+```
 
+## Great but what advantage does this give us?
 
-# define a new object of our lagest type of TV
+If we do this then the way that our script objects act changes subtely. Using the enum and class defined above, let's create a new TV object and check out the object and it's .ToString() output.
+
+```powershell
+# define a new object of our largest type of TV
 $TV = [television3]::new()
 # set some basic property values
 $TV.Manufacturer = 'Toshiba'
 $tv.Model = "t200"
 $tv.Screensize_CM = 200
 
-# set the new Channel property.
-# we dont get any response from this method as we set it to [void]
+# set the new Channel property - note we dont get any response from this method as we set it to [void]
 $tv.SetChannel(4)
 
 # check out the object
 $tv
+```
+![image](https://user-images.githubusercontent.com/2597535/115143295-5c300700-a03e-11eb-80f8-7ac72da94692.png)
 
-# test out the new methods
-$tv.ChannelUp()
-$tv.ChannelDown()
-# because both  methods return an INT we see the new Channel setting
+Instead of seeing the channel number as before, using the enum for the TVChannel gives us the channel name in output.
 
-$tv.ChannelDown
+Enums have another benefit to us, if we are up to doing some comparisons using binary operators. They allow for compact storage of yes/no options. TVs have a lot of features nowadays so it could be really handy to keep all features in one property rather than adding hundreds of individual properties to our object. We need to set up an enum with each of our features first and the add a Features property to our class. 
 
-# calling the ToString method gets all of the object properties in the string format that we specified 
-$tv.ToString()
-
-
-# Enums allow for compact storage of yes/no options
+```powershell
 [flags()]enum TVFeature{
     HDMIInput = 1
     SmartTV = 2
@@ -313,8 +311,6 @@ $tv.ToString()
     WallMount = 16
     UHD = 32
 }
-
-[system.enum]::GetNames([TVFeature])
 
 Class Television4 {
     [string]$Manufacturer
@@ -325,8 +321,11 @@ Class Television4 {
         return ("The {0} {1} has these features: {2}" -f $this.Manufacturer, $this.Model, $this.Features)
     }
 }
+```
 
+Notice the slight twist to the enum declaration - it has a ```[flags]``` prefix and the integers rise a double of the previous value.
 
+```powershell
 # define a new object of our latest type of TV
 $TV = [television4]::new()
 # set some basic property values
@@ -335,33 +334,52 @@ $tv.Model = "P9000"
 
 # check out the object
 $tv
+```
+![image](https://user-images.githubusercontent.com/2597535/115143746-0f99fb00-a041-11eb-97ac-ff1d19b6fe41.png)
 
+```powershell
 # so lets confirm we have HDMIInout for this TV
 $tv.Features = [tvfeature]::HDMIInput
 
 $tv
+```
+![image](https://user-images.githubusercontent.com/2597535/115143759-1e80ad80-a041-11eb-8b9d-6364c0522bca.png)
 
+```powershell
 # but what if we also have one of the other features as well ?
 $tv.Features += [tvfeature]::UHD
 
 $tv
+```
+![image](https://user-images.githubusercontent.com/2597535/115143775-35270480-a041-11eb-9ecf-30a8cb2fbceb.png)
 
+```powershell
 # calling the ToString method gets all of the object properties in the string format that we specified 
 $tv.ToString()
+```
+![image](https://user-images.githubusercontent.com/2597535/115143782-45d77a80-a041-11eb-977b-31626bbae718.png)
 
+It's pretty trivial to add or remove features to our objects using ```+=``` and ```-=```.
+```powershell
 # adding and removing features is simple with += and -=
 $tv.Features += [TVFeature]::SmartTV
 $tv.Features += [TVFeature]::USB
 $tv.Features -= [TVFeature]::HDMIInput
 
 # check out our TV object now
-$tv
-$tv.ToString()
+$tv; $tv.ToString()
+```
+![image](https://user-images.githubusercontent.com/2597535/115143864-95b64180-a041-11eb-910e-6f6f72e3a3c7.png)
+![image](https://user-images.githubusercontent.com/2597535/115143886-a070d680-a041-11eb-8377-b727a48763bb.png)
 
-# so, if we have a TV, how do we tell what features it has and how can we control script flow?
+## Does this help us tell what features a TV has?
+
+Great question - yes it does! We need ro start using lesser known comparison operators ```-band``` and ```-bnot``` to do this. We will take a look at ```-band``` first this does a binary comparison on two objects and returns true if the comparison is equivalent. As help says 
+
+> "In a bitwise AND operation, the resulting bit is set to 1 only when both input bits are 1.""
 
 # by using Bitwise operators
-# usinf -band to find features
+# using -band to find features
 # "In a bitwise AND operation, the resulting bit is set to 1 only when both input bits are 1.""
 $tv.Features -band [tvfeature]::HDMIInput
 
