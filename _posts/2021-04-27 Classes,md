@@ -1,7 +1,3 @@
-
-####################### Classes ##################################
-
-
 ## So what's a class? 
 
 We can consider a PowerShell class to be a blueprint of an object that defines what type of thing it is and how it will behave. For this functionality you will need to be working on PowerShell version 5. We can define our class with syntax layout that is quite similar to the way a function is declared.
