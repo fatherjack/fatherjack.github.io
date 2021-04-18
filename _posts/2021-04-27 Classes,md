@@ -1,5 +1,8 @@
 ## So what's a class? 
 
+<sub>This is the second of three posts that will build on each other
+Part 1 - https://fatherjack.github.io/articles/Enums</sub>
+
 We can consider a PowerShell class to be a blueprint of an object that defines what type of thing it is and how it will behave. For this functionality you will need to be working on PowerShell version 5. We can define our class with syntax layout that is quite similar to the way a function is declared.
 
 ```powershell
