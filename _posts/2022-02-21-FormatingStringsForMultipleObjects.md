@@ -1,11 +1,11 @@
 ---
 layout: post
-title: "Working with dates in non-standard formats"
-description: "How to handle dates that dont conform to normal formats."
+title: "Using -f format operator in the pipeline"
+description: "Combining the -f operator in the PowerShell pipeline."
 category: articles
-tags: [powershell, date, datetime, standard]
+tags: [powershell, pipeline, -f operator, formatting]
 ---
----
+
 
 layout: post
 title: "Working with formatting strings"
