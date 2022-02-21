@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Working with dates in non-standard formats"
-description: "How to handle dates that dont conform to normal formats."
+description: "How to handle dates that don't conform to normal formats."
 category: articles
 tags: [powershell, date, datetime, standard]
 ---
